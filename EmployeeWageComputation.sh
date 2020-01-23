@@ -1,9 +1,9 @@
 #!/bin/bash -x
 echo "Welcome to Employee Wage Computation"
-
-IS_PRESENT=1 #Constant
-
-if [ $((RANDOM%2)) -eq $IS_PRESENT ]
+#Constant
+EMPLOYEE_IS_PRESENT=1
+employeeCheck=$((RANDOM%2))
+if [ $employeeCheck -eq $EMPLOYEE_IS_PRESENT ]
 then
 	echo "Employee is Present"
 else
