@@ -1,5 +1,6 @@
 #!/bin/bash -x
 echo "Welcome to Employee Wage Computation"
+declare -A employeeDailyWage
 #Constants
 EMPLOYEE_WORKING_PARTTIME=1
 EMPLOYEE_WORKING_FULLTIME=2
@@ -38,7 +39,8 @@ do
 	employeeCheck=$(( RANDOM%3 ))
 	employeeHours="$( getWorkHoursOfEmployee $employeeCheck )"
 	totalEmployeeHours=$(($totalEmployeeHours + $employeeHours))
-	employeeDailyWage[$totalWorkingDays]="$( CalculateDailyWage $employeeHours )"
+	employeeDailyWage[Day"$totalWorkingDays"]="$( CalculateDailyWage $employeeHours )"
 done
 totalSalary=$(($totalEmployeeHours*$EMPLOYEE_RATE_PER_HOUR))
 echo "Daily Wage " ${employeeDailyWage[@]}
+echo ${!employeeDailyWage[@]}
