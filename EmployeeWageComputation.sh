@@ -25,12 +25,20 @@ function getWorkHoursOfEmployee()
 	esac
 	echo $employeeHours
 }
+
+function CalculateDailyWage(){
+	local employeeHours=$1
+	wage=$(($employeeHours*$EMPLOYEE_RATE_PER_HOUR))
+	echo $wage
+}
+
 while [[ $totalEmployeeHours -lt $MAX_WORKING_HOURS_IN_MONTH && $totalWorkingDays -lt $WORKING_DAYS_OF_EMPLOYEE ]]
 do
 	((totalWorkingDays++))
 	employeeCheck=$(( RANDOM%3 ))
 	employeeHours="$( getWorkHoursOfEmployee $employeeCheck )"
 	totalEmployeeHours=$(($totalEmployeeHours + $employeeHours))
+	employeeDailyWage[$totalWorkingDays]="$( CalculateDailyWage $employeeHours )"
 done
 totalSalary=$(($totalEmployeeHours*$EMPLOYEE_RATE_PER_HOUR))
-
+echo "Daily Wage " ${employeeDailyWage[@]}
