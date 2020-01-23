@@ -5,11 +5,14 @@ EMPLOYEE_WORKING_PARTTIME=1
 EMPLOYEE_WORKING_FULLTIME=2
 EMPLOYEE_RATE_PER_HOUR=20
 WORKING_DAYS_OF_EMPLOYEE=20
+MAX_WORKING_HOURS_IN_MONTH=100
 #Variable
-totalSalary=0
+totalEmployeeHours=0
+totalWorkingDays=0
 
-for (( day=1; day<=$WORKING_DAYS_OF_EMPLOYEE; day++ ))
+while [[ $totalEmployeeHours -lt $MAX_WORKING_HOURS_IN_MONTH && $totalWorkingDays -lt $WORKING_DAYS_OF_EMPLOYEE ]]
 do
+	((totalWorkingDays++))
 	employeeCheck=$((RANDOM%3))
 	case $employeeCheck in
 		$EMPLOYEE_WORKING_FULLTIME)
@@ -22,7 +25,7 @@ do
 			employeeHours=0
 			;;
 	esac
-
-employeeSalary=$(($employeeHours*$EMPLOYEE_RATE_PER_HOUR))
-totalSalary=$(($totalSalary + $employeeSalary))
+	totalEmployeeHours=$(($totalEmployeeHours + $employeeHours))
 done
+totalSalary=$(($totalEmployeeHours*$EMPLOYEE_RATE_PER_HOUR))
+
