@@ -1,13 +1,18 @@
 #!/bin/bash -x
 echo "Welcome to Employee Wage Computation"
-#Constant
-EMPLOYEE_IS_PRESENT=1
+#Constants
+EMPLOYEE_WORKING_PARTTIME=1
+EMPLOYEE_WORKING_FULLTIME=2
 EMPLOYEE_RATE_PER_HOUR=20
-employeeCheck=$((RANDOM%2))
-if [ $employeeCheck -eq $EMPLOYEE_IS_PRESENT ]
+employeeCheck=$((RANDOM%3))
+if [ $employeeCheck -eq $EMPLOYEE_WORKING_FULLTIME ]
 then
 	employeeHours=8
-	employeeSalary=$(($employeeHours*$EMPLOYEE_RATE_PER_HOUR))
+elif [ $employeeCheck -eq $EMPLOYEE_WORKING_PARTTIME ]
+then
+	employeeHours=4
 else
-	employeeSalary=0
+	employeeHours=0
 fi
+
+employeeSalary=$(($employeeHours*$EMPLOYEE_RATE_PER_HOUR))
