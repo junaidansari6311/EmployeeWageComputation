@@ -1,5 +1,6 @@
 #!/bin/bash -x
 echo "Welcome to Employee Wage Computation"
+#Dictionary
 declare -A employeeDailyWage
 #Constants
 EMPLOYEE_WORKING_PARTTIME=1
@@ -7,7 +8,7 @@ EMPLOYEE_WORKING_FULLTIME=2
 EMPLOYEE_RATE_PER_HOUR=20
 WORKING_DAYS_OF_EMPLOYEE=20
 MAX_WORKING_HOURS_IN_MONTH=100
-#Variable
+#Variables
 totalEmployeeHours=0
 totalWorkingDays=0
 function getWorkHoursOfEmployee()
